@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes(['register' =>true]);
+Auth::routes(['register' =>false]);
 
 Route::get('/home' , 'HomeController@index')->name('home');
 Route::group(['prefix' => 'backend', 'middleware' => ['auth', 'role:superadmin']], function(){
@@ -25,3 +25,7 @@ Route::group(['prefix' => 'backend', 'middleware' => ['auth', 'role:superadmin']
 
     Route::resource('user', 'UserController');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

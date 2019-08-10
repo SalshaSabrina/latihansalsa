@@ -65,7 +65,13 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $request = [
+            'success'=> true,
+            'data'=> $user,
+            'message'=>'Berhasil'
+        ];
+        return response()->json($request, 200);
     }
 
     /**
