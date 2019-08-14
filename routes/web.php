@@ -18,9 +18,15 @@ Route::get('/', function () {
 Auth::routes(['register' =>false]);
 
 Route::get('/home' , 'HomeController@index')->name('home');
-Route::group(['prefix' => 'backend', 'middleware' => ['auth', 'role:superadmin']], function(){
+Route::group(['prefix' => 'backend', 'middleware' => ['auth', 'role:admin']], function(){
     Route::get('/', function(){
         return 'halo';
+    });
+
+    Route::resource('motor', 'MotorController');
+
+    Route::get('/member', function(){
+        return 'halo member';
     });
 
     Route::resource('user', 'UserController');
